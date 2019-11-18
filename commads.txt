@@ -1,0 +1,126 @@
+adduser akshay
+useradd -e 2013-07-30 akshay
+passwd akshay
+
+usermod -a -G sudo aksahy 
+usermod -aG wheel akshay [Centos]
+
+passwd --lock akshay
+passwd --unlock akshay
+
+cat /etc/passwd
+
+pgrep -u akshay
+userdel --remove akshay
+
+mount /dev/sdb /storage2
+mount /dev/sdc1 /storage
+
+Set Account Expiry Date
+chage -E 2019-07-31 e1-246-2
+useradd -e 2013-07-30 akshay
+
+Check the expiry date : 
+chage -l akshay
+
+ldapsearch -x -W -LLL -D "cn=admin,dc=csa,dc=iisc,dc=ernet,dc=in" -b "dc=cl,dc=csa,dc=iisc,dc=ernet,dc=in" uid | grep ankita
+ldapdelete -x -W -D "cn=admin,dc=csa,dc=iisc,dc=ernet,dc=in" "uid=ankita.gupta.ee,ou=People,dc=cl,dc=csa,dc=iisc,dc=ernet,dc=in" 
+ldapdelete -x -W -n -v -D "cn=admin,dc=csa,dc=iisc,dc=ernet,dc=in" "uid=ankita.gupta.ee,ou=People,dc=cl,dc=csa,dc=iisc,dc=ernet,dc=in"
+ldapdelete -x -W -n -D "cn=admin,dc=csa,dc=iisc,dc=ernet,dc=in" uid=ankita.gupta.ee
+ldapsearch -x -W -LLL -D "cn=admin,dc=csa,dc=iisc,dc=ernet,dc=in" -b "dc=cl,dc=csa,dc=iisc,dc=ernet,dc=in" uid | grep ankita
+ldapsearch -x -W -D "cn=admin,dc=csa,dc=iisc,dc=ernet,dc=in" -b "dc=cl"
+ldapsearch -x -W -b "cn=admin,dc=csa,dc=iisc,dc=ernet,dc=in" "uid=*"
+
+/etc/init.d/slapd status
+/etc/ldap/ldap.conf
+/etc/nsswitch.conf
+
+mount
+mount -t nfs 10.192.12.30:/home/scratch /home/scratch
+SLURM
+adduser rishihazra
+passwd rishihazra
+usermod -aG students rishihazra
+usermod -aG docker $(whoami)
+for u in $(lid -g -n students); do sudo usermod -a -G docker $u; done
+
+setfacl -R -m user:tony:rwx  /scratch
+sacctmgr create user name=rishihazra Cluster=buhpc account=students
+
+Set MaxJobs perUser
+sacctmgr modify user <userid> account=<account_name> set MaxJobs=3
+sacctmgr modify user name=akshaynath account=students set MaxJobs=3
+
+sacctmgr add account students Cluster=buhpc
+sacctmgr create user name=akshaynath Cluster=buhpc account=students
+
+
+
+
+export PATH=/usr/local/cuda/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+nvcc --version
+
+
+https://www.server-world.info/en/note?os=CentOS_7&p=quota
+umount /home
+mount -o uquota,gquota /dev/mapper/centos-home /home
+/etc/fstab
+mount | grep home
+#xfs_quota -x /home
+> state
+> report -h 
+> limit bsoft=9g bhard=10g pratheek
+> report -h -u
+
+xfs_quota -x -c 'limit isoft=9g ihard=10g /home/john'
+
+Fine Files more than 3 Days
+find /scratch/ -type f   -mtime +3
+
+
+Docker API Key
+/root/.docker/config.json
+docker login nvcr.io
+$oauthtoken
+JG9hdXRodG9rZW46WlRodllUaHZOVzR4YjJKcFptVXdaV0UwWmpodlpYSnhkRzQ2TkdGalltVXdOREl0TldFMU15MDBZMlEzTFRobU9HRXRZMll6TURKaFltVXdZekJp
+
+
+sudo chown akshaynath:akshaynath .docker/config.json
+export DOCKER_CONFIG=~/.docker
+docker pull nvcr.io/partners/matlab:r2018b
+
+sudo firewall-cmd --zone=public --list-all
+
+restart slurm when drain
+scontrol update nodename=cl-gpuserv1 state=resume
+
+Conda specify env location
+conda create --prefix=/users/.../yourEnvName python=x.x
+source activate yourEnvName
+
+Beep sound on Drona machine
+cd /opt/MegaRAID/MegaCli
+./MegaCli64 -AdpSetProp AlaramSilence -aALL
+
+NVIDIA not started
+https://stackoverflow.com/questions/43022843/nvidia-nvml-driver-library-version-mismatch
+sudo rmmod nvidia_drm
+sudo rmmod nvidia_modeset
+sudo rmmod nvidia_uvm
+sudo rmmod nvidia
+
+Troubleshooting
+sudo lsof /dev/nvidia*
+
+Test
+confirm you successfully unload those kmods
+lsmod | grep nvidia
+
+nvidia-smi
+
+To Reduce Video Size
+ffmpeg -i Input.mp4 -r 30 -s 960x540 Output.mp4
+
+
+chcon -R -t httpd_sys_content_t /home/arindamkhan/public_html
