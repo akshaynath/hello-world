@@ -1,0 +1,47 @@
+mysqldump -u mrbs mrbs -p -e --tables mrbs_entry --where="id > '33145'" > test.sql
+mysql -u mrbs mrbs -p < mysql_mrbs.sql
+
+select * from mrbs_test where id not in (select id from mrbs_entry);
+insert into mrbs_entry select * from mrbs_test where id not in (select id from mrbs_entry);
+drop table mrbs_test
+
+INSERT INTO `mrbs_entry` VALUES (33146,1559885400,1559890800,0,NULL,2,'2019-06-03 11:46:04','office','','Room Booked by Prof. JRH','I','',0,NULL,NULL,NULL,NULL,'MRBS-5cf5087c3bc63-cad3c5ce@csa.iisc.ac.in',0,NULL),(33147,1561001400,1561035600,0,NULL,13,'2019-06-04 03:04:35','office','','Intelligent Systems M.Tech final project seminars','I','booked by Prof. Ambedkar Dukkipati',0,NULL,NULL,NULL,NULL,'MRBS-5cf5dfc393b1c-15abf01a@csa.iisc.ac.in',0,NULL),(33148,1559637000,1559644200,0,NULL,14,'2019-06-04 03:27:22','office','','Meeting - Booked by Dr. Anand Louis','I','',0,NULL,NULL,NULL,NULL,'MRBS-5cf5e51ac8fb9-103a59ab@csa.iisc.ac.in',0,NULL);
+
+GRANT ALL PRIVILEGES ON *.* TO 'mrbs'@'localhost' IDENTIFIED BY '{Mgrmbgsm}';
+GRANT ALL PRIVILEGES ON *.* TO 'guest'@'localhost' IDENTIFIED BY '$hcraes$';
+
+
+chcon -R -t httpd_sys_content_t /home/akshaynath/public_html/
+
+.htaccess
+
+
+swaks --to akshaynath@iisc.ac.in --from "wwwcsa@iisc.ac.in" --server smtp.office365.com --port 587 --auth LOGIN --auth-user "wwwcsa@iisc.ac.in" --auth-password 'Pass@123' -tls -n --silent 1 --header "Subject: [Reminder] Talk by Akshay" --body "TEst"
+
+
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+        . /etc/bashrc
+fi
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+
+/etc/php.ini changes
+disable_functions = pcntl_alarm,pcntl_fork,pcntl_waitpid,pcntl_wait,pcntl_wifexited,pcntl_wifstopped,pcntl_wifsignaled,pcntl_wifcontinued,pcntl_wexitstatus,pcntl_wtermsig,pcntl_wstopsig,pcntl_signal,pcntl_signal_get_handler,pcntl_signal_dispatch,pcntl_get_last_error,pcntl_strerror,pcntl_sigprocmask,pcntl_sigwaitinfo,pcntl_sigtimedwait,pcntl_exec,pcntl_getpriority,pcntl_setpriority,pcntl_async_signals,
+;default_charset = "UTF-8"
+;pcre.jit=0
+
+sudo setsebool -P httpd_can_sendmail 1
+sudo setsebool -P httpd_can_network_connect 1
+Mailer Error: SMTP connect() failed. https://github.com/PHPMailer/PHPMailer/wiki/Troubleshooting
+
+allfac.csa@iisc.ac.in
+
+
+sudo cupsctl WebInterface=Yes
+
